@@ -1,10 +1,18 @@
-function make_vars_graph(var_folder, fixed_param, param_val, proto_val, group_by, stat_lines, title, ylabel)
+function make_vars_graph(var_folder, for_param, param_val, proto_val, group_by, stat_lines, title, ylabel)
+%var_folder: the variance folder to analyse
+%for_param: title fixed parameter [benchmark,variation]
+%param_val: value of the fixed parameter
+%proto_val: the protocol to analyse
+%group_by: parameter to be displayed in x axis
+%stat_lines : the stat lines to analyse
+%title : title of the graph to produce
+%ylabel : unit of the graph
 global simpath;
 
 values = [[]];
 labels = {{}};
 
-if (strcmp(fixed_param, 'variation')) 
+if (strcmp(for_param, 'variation')) 
     % Make a plot of benchmarks/stats lines results for a given protocol and variation
     blist = list_benchmarks();
     slist = stat_lines;

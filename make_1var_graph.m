@@ -1,4 +1,11 @@
 function make_1var_graph(var_folder, for_param, param_val, group_by, stat_line, title, ylabel)
+%var_folder: the variance folder to analyse
+%for_param: title fixed parameter [protocol,benchmark,variation]
+%param_val: value of the fixed parameter
+%group_by: parameter to be displayed in x axis
+%stat_line : the stat line to analyse
+%title : title of the graph to produce
+%ylabel : unit of the graph
 global simpath;
 
 values = [[]];
