@@ -42,9 +42,9 @@ else
             file = [simpath '/' param_val '/' proto_val '/' var_folder '/' vlist{v} '/stats.txt'];
             map = get_stat_hashmap(file);
             if(strcmp(group_by,'statline'))
-                values(v,p) = get_val(map, slist{s});
+                values(s,v) = get_val(map, slist{s});
             else
-                values(p,v) = get_val(map, slist{s});
+                values(v,s) = get_val(map, slist{s});
             end
         end
     end
