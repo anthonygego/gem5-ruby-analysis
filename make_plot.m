@@ -1,4 +1,4 @@
-function plt = make_plot(the_title, map_list, legend_list, compstr)
+function plt = make_plot(the_title, map_list, legend_list, thelabel, compstr)
 
 num_groups=length(map_list);
 len=length(map_list{1});
@@ -21,14 +21,20 @@ stddev=std(dvalues);
 
 % Draw graph
 bar(values);
-axis([0.5 len+0.5 meanval-3*stddev meanval+3*stddev]);
-xticklabel_rotate(1:len,45,legend_list{1},'interpreter','none')
+if num_groups > 1
+    axis_len=num_groups;
+else
+    axis_len=len;
+end
+axis([0.5 axis_len+0.5 max(0,meanval-3*stddev) meanval+3*stddev]);
+xticklabel_rotate(1:axis_len,45,legend_list{1},'interpreter','none')
 
 if num_groups > 1
     legend(legend_list{2})
 end
 
 title(the_title);
+ylabel(thelabel);
 
 plt=gca;
 
