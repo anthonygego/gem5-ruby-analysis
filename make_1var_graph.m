@@ -19,9 +19,9 @@ if (strcmp(for_param, 'protocol'))
             file = [simpath '/' blist{b} '/' param_val '/' var_folder '/' vlist{v} '/stats.txt'];
             map = get_stat_hashmap(file);
             if(strcmp(group_by,'variation'))
-                values(v,b) = map(stat_line);
+                values(v,b) = get_val(map, stat_line);
             else
-                values(b,v) = map(stat_line);
+                values(b,v) = get_val(map, stat_line);
             end
         end
     end
@@ -44,9 +44,9 @@ elseif (strcmp(for_param, 'variation'))
             file = [simpath '/' blist{b} '/' plist{p} '/' var_folder '/' param_val '/stats.txt'];
             map = get_stat_hashmap(file);
             if(strcmp(group_by,'benchmark'))
-                values(b,p) = map(stat_line);
+                values(b,p) = get_val(map, stat_line);
             else
-                values(p,b) = map(stat_line);
+                values(p,b) = get_val(map, stat_line);
             end
         end
     end
@@ -69,9 +69,9 @@ else
             file = [simpath '/' param_val '/' plist{p} '/' var_folder '/' vlist{v} '/stats.txt'];
             map = get_stat_hashmap(file);
             if(strcmp(group_by,'variation'))
-                values(v,p) = map(stat_line);
+                values(v,p) = get_val(map, stat_line);
             else
-                values(p,v) = map(stat_line);
+                values(p,v) = get_val(map, stat_line);
             end
         end
     end
