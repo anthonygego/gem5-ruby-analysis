@@ -1,7 +1,7 @@
 function make_1var_graph(var_folder, for_param, param_val, group_by, stat_line, title, ylabel)
 global simpath;
 
-maps = {{}};
+values = [[]];
 labels = {{}};
 
 if (strcmp(for_param, 'protocol')) 
@@ -19,9 +19,9 @@ if (strcmp(for_param, 'protocol'))
             file = [simpath '/' blist{b} '/' param_val '/' var_folder '/' vlist{v} '/stats.txt'];
             map = get_stat_hashmap(file);
             if(strcmp(group_by,'variation'))
-                maps{v}{b} = map;
+                values(v,b) = map(stat_line);
             else
-                maps{b}{v} = map;
+                values(b,v) = map(stat_line);
             end
         end
     end
@@ -44,9 +44,9 @@ elseif (strcmp(for_param, 'variation'))
             file = [simpath '/' blist{b} '/' plist{p} '/' var_folder '/' param_val '/stats.txt'];
             map = get_stat_hashmap(file);
             if(strcmp(group_by,'benchmark'))
-                maps{b}{p} = map;
+                values(b,p) = map(stat_line);
             else
-                maps{p}{b} = map;
+                values(p,b) = map(stat_line);
             end
         end
     end
@@ -69,16 +69,16 @@ else
             file = [simpath '/' param_val '/' plist{p} '/' var_folder '/' vlist{v} '/stats.txt'];
             map = get_stat_hashmap(file);
             if(strcmp(group_by,'variation'))
-                maps{v}{p} = map;
+                values(v,p) = map(stat_line);
             else
-                maps{p}{v} = map;
+                values(p,v) = map(stat_line);
             end
         end
     end
 end
 
 % Make the plot
-make_plot(title, maps, labels, ylabel, stat_line)
+make_plot(title, values, labels, ylabel)
 
 end
 

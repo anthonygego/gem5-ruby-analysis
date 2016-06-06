@@ -1,23 +1,13 @@
-function plt = make_plot(the_title, map_list, legend_list, thelabel, compstr)
+function plt = make_plot(the_title, values, legend_list, thelabel)
 
-num_groups=length(map_list);
-len=length(map_list{1});
-
-% Prepare value vector
-values = zeros(num_groups,len);
-for g=1:num_groups
-    for k=1:len
-        map = map_list{g}{k};
-        values(g,k) = map(compstr);
-    end
-end
+num_groups=length(values(:,1));
+len=length(values);
 
 % Compute interesting axis values
 p = values';
 dvalues = p(:)';
 meanval=mean(dvalues);
 stddev=std(dvalues);
-
 
 % Draw graph
 close all;
