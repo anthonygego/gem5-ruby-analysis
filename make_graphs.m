@@ -11,7 +11,7 @@ function make_graphs()
 maps{1}{1} = get_stat_hashmap('../lelec2990-sim/blackscholes/X86/cacheline_size/64b/stats.txt');
 maps{1}{2} = get_stat_hashmap('../lelec2990-sim/blackscholes/X86_MESI_Two_Level/cacheline_size/64b/stats.txt');
 maps{1}{3} = get_stat_hashmap('../lelec2990-sim/blackscholes/X86_MESI_Three_Level/cacheline_size/64b/stats.txt');
-maps{1}{4} = get_stat_hashmap('../lelec2990-sim/blackscholes/X86_MOESI_hammer/cacheline_size/64b/stats.txt');
+maps{1}{4} = get_stat_hashmap('../lelec2990-sim/blackscholes/X86_MOESI_hammer/l1d_size/64kB/stats.txt');
 
 make_plot('lol', maps, {{'mi', 'mesi2','mesi3','moesih'}}, 'sim_seconds');
 

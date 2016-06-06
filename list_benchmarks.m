@@ -1,6 +1,6 @@
-function blist = list_benchmarks(folder)
+function blist = list_benchmarks()
 
-d = dir(folder);
+d = dir(simpath);
 isub = [d(:).isdir]; %# returns logical vector
 blist = {d(isub).name}';
 blist(ismember(blist,{'.','..', '.git'})) = [];

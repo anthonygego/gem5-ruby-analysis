@@ -1,8 +1,18 @@
 function arr = get_stat_hashmap(filename)
+    
+    fpieces = regexp(filename, 'stats.txt', 'split');
+    
+    % Check if default config
+    if(exist([fpieces{1} '/default'], 'file'))
+        oldpieces = regexp(filename, '/', 'split');
+        pieces = [oldpieces{1:end-3} {'cacheline_size', '64b'}];
+        filename = [sprintf('%s/',pieces{1:end}) 'stats.txt'];
+        display(sprintf('Warning : %s is default', sprintf('%s/', oldpieces{end-2:end})));
+    end
+
     % Check for mat file
     [pathstr,~,~] = fileparts(filename);
-    matfile = [pathstr '/stats.mat'];
-    
+    matfile = [pathstr '/stats.mat'];  
     if(exist(matfile, 'file'))
         load(matfile, 'arr');
     else
