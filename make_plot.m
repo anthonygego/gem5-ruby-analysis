@@ -19,7 +19,7 @@ else
     axis_len=len;
 end
 axis([0.5 axis_len+0.5 max(0,meanval-3*stddev) meanval+3*stddev]);
-xticklabel_rotate(1:axis_len,70,filter_legend(legend_list{1}),'interpreter','none')
+xticklabel_rotate(1:axis_len,60,filter_legend(legend_list{1}),'interpreter','none')
 
 if num_groups > 1
     legend(strrep(filter_legend(legend_list{2}), '_', '\_'));

@@ -1,4 +1,4 @@
-function make_1var_graph(var_folder, for_param, param_val, group_by, stat_line, title, ylabel)
+function make_1var_graph(var_folder, for_param, param_val, group_by, stat_line, actual_groups, title, ylabel)
 %var_folder: the variance folder to analyse
 %for_param: title fixed parameter [protocol,benchmark,variation]
 %param_val: value of the fixed parameter
@@ -85,6 +85,23 @@ else
 end
 
 % Make the plot
+if ~isempty(actual_groups)
+    values = values(actual_groups,:);
+    if length(actual_groups) == 1
+        title = [title ' / ' labels{1}{actual_groups}];
+        labels{1} = labels{2};
+    else
+        % Need to redo the labels
+        idx=0;
+        newlabels1 = {};
+        for g=actual_groups
+            idx = idx+1;
+            newlabels1{idx} = labels{1}{g};
+        end
+        labels{1} = newlabels1;
+    end
+end
+
 make_plot(title, values, labels, ylabel)
 
 end

@@ -16,6 +16,8 @@ function arr = get_stat_hashmap(filename)
     if(exist(matfile, 'file'))
         load(matfile, 'arr');
     else
+        display('Parsing data file...');
+        
         % Open the stats file
         fid = fopen(filename);
         arr = containers.Map;
@@ -55,5 +57,7 @@ function arr = get_stat_hashmap(filename)
 
         % Save the mat file
         save(matfile, 'arr');
+        
+        fclose(fid);
     end
 end
