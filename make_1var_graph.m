@@ -63,6 +63,10 @@ else
     plist = list_protocols(param_val);
     vlist = list_variations(param_val, plist{1}, var_folder);
     
+    if isempty(vlist)
+        vlist = list_variations(param_val, plist{2}, var_folder);
+    end
+    
     strplist = strrep(strrep(strrep(plist, 'X86_', ''), 'X86', 'MI'), '_directory', '');
     if(strcmp(group_by,'variation'))
         

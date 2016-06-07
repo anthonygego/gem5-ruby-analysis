@@ -1,5 +1,4 @@
 function arr = get_stat_hashmap(filename)
-    
     fpieces = regexp(filename, 'stats.txt', 'split');
     
     % Check if default config
@@ -15,6 +14,9 @@ function arr = get_stat_hashmap(filename)
     matfile = [pathstr '/stats.mat'];  
     if(exist(matfile, 'file'))
         load(matfile, 'arr');
+    elseif (~exist(filename, 'file'))
+        display(['Variation ' filename ' does not exist!'])
+        arr = containers.Map;
     else
         display('Parsing data file...');
         
