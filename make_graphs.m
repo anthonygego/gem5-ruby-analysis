@@ -220,8 +220,8 @@ end
 % for k=1:2
 %     make_vars_graph('cacheline_size', 'variation', '64b', 'X86_MOESI_CMP_directory', 'benchmark', events{k}, [], 'Two-level MOESI L1 events for default configuration', 'Amount');
 % end
-% events = {'system.ruby.L1Cache_Controller.M.Fwd_GETS::total'};
-% make_vars_graph('cacheline_size', 'variation', '64b', 'X86_MOESI_CMP_directory', 'benchmark', events, [], 'Two-level MOESI L1 events for default configuration', 'Amount');
+%  events = {'system.ruby.L1Cache_Controller.MM.Fwd_GETS::total'};
+%  make_vars_graph('cacheline_size', 'variation', '64b', 'X86_MOESI_CMP_directory', 'benchmark', events, [], 'Two-level MOESI L1 events for default configuration', 'Amount');
 
 % L2 controller
 % events = {{'system.ruby.L2Cache_Controller.L1_GETS',...
@@ -246,6 +246,43 @@ end
 %     'system.ruby.network.msg_count.Writeback_Control'};
 % make_vars_graph('cacheline_size', 'variation', '64b', 'X86_MOESI_CMP_directory', 'benchmark', events, [], 'Two-level MOESI network message count', 'Amount');
 
+%% MOESI Hammer
+
+% Directory
+% events = {'system.ruby.Directory_Controller.GETX',...
+%     'system.ruby.Directory_Controller.GETS',...
+%     'system.ruby.Directory_Controller.PUT',...
+%     'system.ruby.Directory_Controller.Memory_Data',...
+%     'system.ruby.Directory_Controller.Memory_Ack',...
+%     };
+% 
+%  
+% simpath='../dataset1';
+% make_vars_graph('cacheline_size', 'variation', '64b', 'X86_MOESI_hammer', 'bench', events, [], 'MOESI Hammer Directory events for default configuration', 'Amount');
+% simpath='../dataset2';
+% make_vars_graph('cacheline_size', 'variation', '64b', 'X86_MOESI_hammer', 'bench', events, [], 'MOESI Hammer MOESI Directory events for default configuration', 'Amount');  
+
+%L1 controller
+% events = {{'system.ruby.L1Cache_Controller.Other_GETX::total',...
+%     'system.ruby.L1Cache_Controller.Other_GETS::total'},...
+%     {'system.ruby.L1Cache_Controller.Shared_Data::total',...
+%     'system.ruby.L1Cache_Controller.Exclusive_Data::total',...
+%     'system.ruby.L1Cache_Controller.Writeback_Ack::total',...
+%     'system.ruby.L1Cache_Controller.L2_Replacement::total'}};
+% simpath='../dataset2';
+% for k=1:2
+%     make_vars_graph('cacheline_size', 'variation', '64b', 'X86_MOESI_hammer', 'benchmark', events{k}, [], 'Two-level MOESI L1 events for default configuration', 'Amount');
+% end
+
+% Network
+% simpath='../dataset2';
+% events = {'system.ruby.network.msg_count.Request_Control',...
+%     'system.ruby.network.msg_count.Broadcast_Control',...
+%     'system.ruby.network.msg_count.Response_Control',...
+%     'system.ruby.network.msg_count.Response_Data',...
+%     'system.ruby.network.msg_count.Writeback_Data',...
+%     'system.ruby.network.msg_count.Writeback_Control'};
+% make_vars_graph('cacheline_size', 'variation', '64b', 'X86_MOESI_hammer', 'benchmark', events, [], 'Two-level MOESI network message count', 'Amount');
 
 
 end
