@@ -4,7 +4,7 @@ global simpath;
 %% Global analysis
 
 for path={'../dataset1', '../dataset2'}
-    %simpath=path{1};
+    simpath=path{1};
 
     % All benchmark/protocols ROI time under default config
     %make_1var_graph('cacheline_size', 'variation', '64B', 'benchmark', 'sim_seconds', [], 'Time spent in ROI for default parameters', 'Seconds [s]');
@@ -16,6 +16,19 @@ for path={'../dataset1', '../dataset2'}
     % Same zoomed
     %make_1var_graph('cacheline_size', 'variation', '64B', 'benchmark', 'system.mem_ctrls.bytes_written::total', [1 2], 'Bytes written in memory', 'Bytes written to memory [B]');
     %make_1var_graph('cacheline_size', 'variation', '64B', 'benchmark', 'system.mem_ctrls.bytes_read::total', [1 2], 'Bytes read in memory', 'Bytes read to memory [B]');  
+
+    % Network traffic
+    events = {'system.ruby.network.msg_byte.Control',...
+        'system.ruby.network.msg_byte.Request_Control',...
+        'system.ruby.network.msg_byte.Broadcast_Control',...
+        'system.ruby.network.msg_byte.Forwarded_Control',...
+        'system.ruby.network.msg_byte.Response_Control',...
+        'system.ruby.network.msg_byte.Response_Data',...
+        'system.ruby.network.msg_byte.Writeback_Data',...
+        'system.ruby.network.msg_byte.Data',...
+        'system.ruby.network.msg_byte.Writeback_Control'};
+
+    make_1var_graph('cacheline_size', 'variation', '64B', 'benchmark', events, [], 'Coherence traffic in bytes', 'Bytes [B]');
 end
 
 % cacheline
@@ -314,6 +327,5 @@ end
 %     'system.ruby.network.msg_byte.Writeback_Data',...
 %     'system.ruby.network.msg_byte.Writeback_Control'};
 % make_vars_graph('cacheline_size', 'variation', '64b', 'X86_MOESI_hammer', 'benchmark', events, [], 'Two-level MOESI network message bytes', 'Amount');
-
-
+     
 end
